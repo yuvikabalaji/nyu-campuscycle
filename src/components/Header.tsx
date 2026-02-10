@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Search, Heart, MessageCircle, ShoppingBag, User, LayoutDashboard, Package } from "lucide-react";
 import { SearchBar } from "./SearchBar";
@@ -38,12 +39,17 @@ export function Header() {
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-3 sm:gap-4 sm:px-4 lg:px-6">
         <Link
           href={isSellerMode ? "/seller" : "/market"}
-          className={clsx(
-            "shrink-0 text-lg font-bold focus:ring-2 focus:ring-offset-2 rounded",
-            isSellerMode ? "text-nyu-purple focus:ring-nyu-purple" : "text-nyu-purple focus:ring-nyu-purple"
-          )}
+          className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full focus:ring-2 focus:ring-offset-2 focus:ring-nyu-purple focus:ring-offset-white dark:focus:ring-offset-gray-900"
+          aria-label="NYU Campus Cycle home"
         >
-          NYU Campus Cycle
+          <Image
+            src="/logo.png"
+            alt="NYU Campus Cycle"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+            priority
+          />
         </Link>
 
         <div className="hidden shrink-0 rounded-full bg-gray-100 p-0.5 dark:bg-gray-800 sm:flex">
@@ -161,15 +167,9 @@ export function Header() {
               <Link
                 href="/market"
                 className="hidden h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:hover:bg-gray-700 sm:flex"
-                aria-label="Bag"
+                aria-label="Market"
               >
                 <ShoppingBag className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-              </Link>
-              <Link
-                href="/sell"
-                className="hidden rounded-lg bg-nyu-purple px-3 py-2 text-sm font-medium text-white hover:bg-nyu-purple-light focus:ring-2 focus:ring-nyu-purple focus:ring-offset-2 sm:inline-flex"
-              >
-                Sell
               </Link>
             </>
           )}
@@ -258,13 +258,6 @@ export function Header() {
                         className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
                       >
                         Saved
-                      </Link>
-                      <Link
-                        href="/sell"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                      >
-                        Sell
                       </Link>
                     </>
                   )}

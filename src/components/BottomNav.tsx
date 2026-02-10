@@ -3,13 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Store, PlusCircle, Heart, MessageCircle, User, LayoutDashboard, Package, Inbox } from "lucide-react";
+import { Store, Heart, MessageCircle, User, LayoutDashboard, Package, Inbox } from "lucide-react";
 import { useStore } from "@/lib/store";
 import clsx from "clsx";
 
 const buyerNavItems = [
   { href: "/market", label: "Market", icon: Store },
-  { href: "/sell", label: "Sell", icon: PlusCircle },
   { href: "/saved", label: "Saved", icon: Heart },
   { href: "/messages", label: "Messages", icon: MessageCircle },
   { href: "/profile", label: "Profile", icon: User },

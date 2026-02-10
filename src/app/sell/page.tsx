@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -45,9 +45,17 @@ const STEPS = 4;
 
 export default function SellPage() {
   const router = useRouter();
-  const { createListing } = useStore();
+  const { createListing, currentMode, setMode } = useStore();
   const { toast } = useToast();
   const [step, setStep] = useState(1);
+
+  // Post a listing is only in seller mode; redirect buyer to seller dashboard
+  useEffect(() => {
+    if (currentMode === "buyer") {
+      setMode("seller");
+      router.replace("/seller");
+    }
+  }, [currentMode, setMode, router]);
   const [images, setImages] = useState<string[]>([]);
   const [pickupSpots, setPickupSpots] = useState<PickupSpot[]>([]);
   const [availableFrom, setAvailableFrom] = useState("");
@@ -127,6 +135,8 @@ export default function SellPage() {
     toast("Listing posted");
     router.push(`/listing/${id}`);
   };
+
+  if (currentMode === "buyer") return null;
 
   return (
     <div className="mx-auto max-w-xl px-3 py-6 sm:px-4">
