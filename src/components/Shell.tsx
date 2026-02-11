@@ -8,7 +8,7 @@ import { Sidebar } from "./Sidebar";
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const showSidebar = pathname === "/market" || pathname.startsWith("/seller");
+  const showSidebar = pathname === "/market";
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">

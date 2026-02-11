@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Search, Heart, MessageCircle, ShoppingBag, User, LayoutDashboard, Package } from "lucide-react";
+import { Search, Heart, MessageCircle, ShoppingBag, User, LayoutDashboard, Package, Store, Inbox } from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { useStore } from "@/lib/store";
 import clsx from "clsx";
@@ -88,17 +88,12 @@ export function Header() {
               Seller
             </button>
           </div>
-          {isSellerMode && (
-            <span className="hidden shrink-0 rounded-full bg-nyu-purple/20 px-2.5 py-0.5 text-xs font-medium text-nyu-purple dark:bg-nyu-purple/30 md:inline-block">
-              Seller Mode
-            </span>
-          )}
 
         <div className="hidden flex-1 lg:flex lg:justify-center">
           {!isSellerMode && <SearchBar />}
         </div>
 
-        <div className="flex flex-1 items-center justify-end gap-1 lg:flex-initial lg:gap-2">
+        <div className="flex flex-1 items-center justify-end gap-1 lg:flex-initial lg:flex lg:gap-3">
           {!isSellerMode && (
             <div className="lg:hidden">
               <button
@@ -115,71 +110,101 @@ export function Header() {
           {isSellerMode ? (
             <>
               <Link
+                href="/seller"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-nyu-purple/20 lg:inline-flex"
+                aria-label="Seller Dashboard"
+              >
+                <LayoutDashboard className="h-4 w-4" />
+                <span>Dashboard</span>
+              </Link>
+              <Link
                 href="/seller/listings"
-                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-nyu-purple/20 sm:flex"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-nyu-purple/20 lg:inline-flex"
                 aria-label="My Listings"
               >
                 <Package className="h-4 w-4" />
-                <span className="hidden md:inline">My Listings</span>
+                <span>My Listings</span>
               </Link>
               <Link
                 href="/seller/requests"
-                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-nyu-purple/20 sm:flex"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-nyu-purple/20 lg:inline-flex"
                 aria-label="Requests"
               >
-                Requests
+                <Inbox className="h-4 w-4" />
+                <span>Requests</span>
               </Link>
               <Link
                 href="/messages"
-                className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:hover:bg-nyu-purple/20"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-nyu-purple/20 lg:inline-flex"
                 aria-label="Messages"
               >
-                <MessageCircle className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <MessageCircle className="h-4 w-4" />
+                <span>Messages</span>
               </Link>
               <Link
                 href="/sell"
-                className="hidden rounded-lg bg-nyu-purple px-3 py-2 text-sm font-medium text-white hover:bg-nyu-purple-light focus:ring-2 focus:ring-nyu-purple focus:ring-offset-2 sm:inline-flex"
+                className="hidden rounded-lg bg-nyu-purple px-3 py-2 text-sm font-medium text-white hover:bg-nyu-purple-light focus:ring-2 focus:ring-nyu-purple focus:ring-offset-2 lg:inline-flex"
               >
                 Create Listing
+              </Link>
+              <Link
+                href="/profile"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-nyu-purple/10 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-nyu-purple/20 lg:inline-flex"
+                aria-label="Profile"
+              >
+                <User className="h-4 w-4" />
+                <span>Profile</span>
               </Link>
             </>
           ) : (
             <>
               <Link
+                href="/market"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-gray-800 lg:inline-flex"
+                aria-label="Market"
+              >
+                <Store className="h-4 w-4" />
+                <span>Market</span>
+              </Link>
+              <Link
                 href="/saved"
-                className="relative flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:hover:bg-gray-700"
+                className="relative hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-gray-800 lg:inline-flex"
                 aria-label="Saved items"
               >
-                <Heart className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <Heart className="h-4 w-4" />
+                <span>Saved</span>
                 {savedIds.length > 0 && (
-                  <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-nyu-purple text-[10px] font-medium text-white">
+                  <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-nyu-purple px-1.5 text-[10px] font-medium text-white">
                     {savedIds.length > 9 ? "9+" : savedIds.length}
                   </span>
                 )}
               </Link>
               <Link
                 href="/messages"
-                className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:hover:bg-gray-700"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-gray-800 lg:inline-flex"
                 aria-label="Messages"
               >
-                <MessageCircle className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <MessageCircle className="h-4 w-4" />
+                <span>Messages</span>
               </Link>
               <Link
-                href="/market"
-                className="hidden h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:hover:bg-gray-700 sm:flex"
-                aria-label="Market"
+                href="/profile"
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:text-gray-300 dark:hover:bg-gray-800 lg:inline-flex"
+                aria-label="Profile"
               >
-                <ShoppingBag className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <User className="h-4 w-4" />
+                <span>Profile</span>
               </Link>
             </>
           )}
 
-          <div className="relative">
+          {/* Mobile only: dropdown for Switch mode + Profile (rest is in bottom nav) */}
+          <div className="relative lg:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:hover:bg-gray-700"
-              aria-label="Profile and mode"
+              aria-label="Menu"
               aria-expanded={mobileMenuOpen}
             >
               <User className="h-5 w-5 text-gray-700 dark:text-gray-300" />
@@ -217,50 +242,6 @@ export function Header() {
                     <User className="h-4 w-4" />
                     Profile
                   </Link>
-                  {isSellerMode ? (
-                    <>
-                      <Link
-                        href="/seller"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                      >
-                        <LayoutDashboard className="h-4 w-4" />
-                        Seller Dashboard
-                      </Link>
-                      <Link
-                        href="/seller/listings"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                      >
-                        <Package className="h-4 w-4" />
-                        My Listings
-                      </Link>
-                      <Link
-                        href="/seller/requests"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                      >
-                        Requests
-                      </Link>
-                    </>
-                  ) : (
-                    <>
-                      <Link
-                        href="/market"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                      >
-                        Market
-                      </Link>
-                      <Link
-                        href="/saved"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                      >
-                        Saved
-                      </Link>
-                    </>
-                  )}
                 </div>
               </>
             )}
