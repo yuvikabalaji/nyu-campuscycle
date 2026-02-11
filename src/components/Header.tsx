@@ -13,17 +13,6 @@ export function Header() {
   const router = useRouter();
   const { savedIds, currentMode, toggleMode, setMode } = useStore();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const handleToggleMode = () => {
-    toggleMode();
-    setMobileMenuOpen(false);
-    if (currentMode === "buyer") {
-      router.push("/seller");
-    } else {
-      router.push("/market");
-    }
-  };
 
   const isSellerMode = currentMode === "seller";
 
@@ -52,7 +41,7 @@ export function Header() {
           />
         </Link>
 
-        <div className="hidden shrink-0 rounded-full bg-gray-100 p-0.5 dark:bg-gray-800 sm:flex">
+        <div className="flex shrink-0 rounded-full bg-gray-100 p-0.5 dark:bg-gray-800">
             <button
               type="button"
               onClick={() => {
@@ -198,54 +187,6 @@ export function Header() {
             </>
           )}
 
-          {/* Mobile only: dropdown for Switch mode + Profile (rest is in bottom nav) */}
-          <div className="relative lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-nyu-purple dark:hover:bg-gray-700"
-              aria-label="Menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              <User className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-            </button>
-            {mobileMenuOpen && (
-              <>
-                <div
-                  className="fixed inset-0 z-40"
-                  onClick={() => setMobileMenuOpen(false)}
-                  aria-hidden
-                />
-                <div className="absolute right-0 top-full z-50 mt-1 w-52 rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-800 dark:bg-gray-900">
-                  <button
-                    type="button"
-                    onClick={handleToggleMode}
-                    className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                  >
-                    {isSellerMode ? (
-                      <>
-                        <LayoutDashboard className="h-4 w-4" />
-                        Switch to Buyer Mode
-                      </>
-                    ) : (
-                      <>
-                        <Package className="h-4 w-4" />
-                        Switch to Seller Mode
-                      </>
-                    )}
-                  </button>
-                  <Link
-                    href="/profile"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800"
-                  >
-                    <User className="h-4 w-4" />
-                    Profile
-                  </Link>
-                </div>
-              </>
-            )}
-          </div>
         </div>
       </div>
 

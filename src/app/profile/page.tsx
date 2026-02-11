@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Store, Heart, MessageCircle, Settings } from "lucide-react";
+import { Info } from "lucide-react";
 
 const DEMO_USER = { name: "You", gradYear: 2026 };
 
@@ -25,31 +25,10 @@ export default function ProfilePage() {
       </div>
       <nav className="mt-6 space-y-1" aria-label="Profile links">
         <Link
-          href="/market"
-          className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-nyu-purple dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
-        >
-          <Store className="h-5 w-5 text-gray-500" />
-          <span>Browse market</span>
-        </Link>
-        <Link
-          href="/saved"
-          className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-nyu-purple dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
-        >
-          <Heart className="h-5 w-5 text-gray-500" />
-          <span>Saved</span>
-        </Link>
-        <Link
-          href="/messages"
-          className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-nyu-purple dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
-        >
-          <MessageCircle className="h-5 w-5 text-gray-500" />
-          <span>Messages</span>
-        </Link>
-        <Link
           href="/about"
           className="flex items-center gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-nyu-purple dark:border-gray-800 dark:bg-gray-900 dark:hover:bg-gray-800"
         >
-          <Settings className="h-5 w-5 text-gray-500" />
+          <Info className="h-5 w-5 text-gray-500" />
           <span>About and launch plan</span>
         </Link>
       </nav>
