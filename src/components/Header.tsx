@@ -4,14 +4,24 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Search, Heart, MessageCircle, ShoppingBag, User, LayoutDashboard, Package, Store, Inbox } from "lucide-react";
+import {
+  Search,
+  Heart,
+  MessageCircle,
+  ShoppingBag,
+  User,
+  LayoutDashboard,
+  Package,
+  Store,
+  Inbox,
+} from "lucide-react";
 import { SearchBar } from "./SearchBar";
 import { useStore } from "@/lib/store";
 import clsx from "clsx";
 
 export function Header() {
   const router = useRouter();
-  const { savedIds, currentMode, toggleMode, setMode } = useStore();
+  const { savedIds, currentMode, setMode } = useStore();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   const isSellerMode = currentMode === "seller";
@@ -36,7 +46,7 @@ export function Header() {
             alt="NYU Campus Cycle"
             width={40}
             height={40}
-            className="h-10 w-10 object-contain"
+            className="h-8 w-8 object-contain"
             priority
           />
         </Link>

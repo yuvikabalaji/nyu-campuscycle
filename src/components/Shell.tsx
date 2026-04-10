@@ -11,7 +11,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const showSidebar = pathname === "/market";
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Header />
       <div className="flex max-w-7xl mx-auto">
         {showSidebar && <Sidebar />}
